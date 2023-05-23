@@ -1,13 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
 
-function App() {
-
+export default function Home() {
   return (
     <div>
-          <h2>Simple RPS</h2>
+         <h2>Simple RPS</h2>
           <form>
             <label htmlFor="bestof">Best Of:</label>
             <input type="number" name="bestof" id="bestof" />
@@ -19,5 +15,3 @@ function App() {
     </div>
   )
 }
-
-export default App
