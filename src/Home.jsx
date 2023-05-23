@@ -5,7 +5,11 @@ export default function Home() {
     const navigate = useNavigate();
     const bestOfRef = useRef();
     const startGame = (e)=>{
-        navigate('',{state:{bestof:bestOfRef.current.value || 3}});
+        e.preventDefault();
+        const data = {
+            bestof:bestOfRef?.current?.value || 3
+        }
+        navigate('/game',{state:data});
     }
     return (
         <div>
