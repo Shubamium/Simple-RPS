@@ -4,11 +4,19 @@ import { useEffect, useState } from "react";
 import { ROUND_STATE, STATE_ROUND } from "./utility";
 import styled from "styled-components";
 import { StyledLayout } from "./Home";
+import { StyledButton } from "./components/styled/StyledButton";
 
 
 const StyledGame = styled(StyledLayout)`
     
-
+    header{
+        .roundcount{
+            font-size: 1.5rem;
+            span{
+                font-weight:bold;
+            }
+        }
+    }
     .main{
 
         .player-pick{
@@ -23,10 +31,17 @@ const StyledGame = styled(StyledLayout)`
             font-size: 5rem;
             font-weight: 700;
             text-align: center;
+            background-color: #b2b1b428;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 0 .3em;
+            color:#ababab;
         }
         .heading{
             text-align: center;
         }
+
+       
     }
 `
 
@@ -137,7 +152,7 @@ export default function Game() {
     return (
         <StyledGame>
             <header>
-                <p>Game {round}</p>
+                <h2 className="roundcount">Game {round}</h2>
                 <h2><b>Simple</b> Rock Paper Scissors</h2>
             </header>
             <div className="main">
@@ -157,8 +172,16 @@ export default function Game() {
                 </div>
             </div>
             <footer>
-                  <p>Best Of:{bestof}</p>
+                  <div className="div">
+                    <p>Best Of:</p>
+                    <h2>
+                        {bestof}
+                    </h2>
+                  </div>
+                  <StyledButton onClick={()=>{navigate('/')}}>Go Back</StyledButton>
             </footer>
         </StyledGame>
     )
 }
+
+

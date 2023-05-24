@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { bgColor } from "../../utility";
 
 export const StyledButton = styled.button`
-    background: ${bgColor[0]};
+    background: ${props => (props.bgColor && bgColor[props.bgColor]) || bgColor[0]};
     padding: .2em 1em;
     font-weight: bold;
     font-size:1.2rem;
