@@ -12,3 +12,5 @@ export const ROUND_STATE = {
     lose:1,
     win:2
 }
+
+export const bgColor = ['#FF7676','#42C6FE','#A1FF8A','#7D7D7D'];

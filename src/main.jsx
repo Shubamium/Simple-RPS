@@ -4,7 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './Home.jsx'
 import Game from './Game.jsx';
 import Results from './Results.jsx';
-
+import globals from './Global.css';
 
 const routes = createBrowserRouter(
   [
