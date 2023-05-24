@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import Slot from "./components/slot";
+import Slot from "./components/Slot";
 import { useEffect, useState } from "react";
 import { ROUND_STATE, STATE_ROUND } from "./utility";
 import styled from "styled-components";
