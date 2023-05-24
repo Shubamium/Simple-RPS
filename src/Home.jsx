@@ -23,12 +23,39 @@ const StyledHome = styled.main`
         display: flex;
         justify-content: space-between;
         width: 100%;
+        align-items: center;
+        .credit{
+            .icon{
+                width: 20px;
+                height: 20px;
+                background-color: #7d7d7d;
+            }
+            a{
+                color: black;
+            }
+        }
+
+        .highscore{
+            text-align: right;
+            h2{
+                font-size:.9rem;
+                font-weight: 400;
+            }
+            .score{
+                margin: .2em 0;
+                font-size: 1.4rem;
+                padding: .2em 2em;
+                background-color: #FF7676;
+                font-weight: bold;
+                color: white;
+            }
+        }
     }
 
     .main{
         display: grid;
         width: 60vw;
-        gap: 2em;
+        gap: 200px;
         grid-template-columns: 1fr 1fr;
         .decor{
             width: 100%;
@@ -38,13 +65,17 @@ const StyledHome = styled.main`
         }
 
         .action{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1em;
             .main-title{
                 font-size: 8rem;
                 text-transform: uppercase;
                 line-height: 80%;
             }
             .game-start_form{
-                padding: .9em;
+                padding: 0 .6em;
                 label{
                     font-weight: 200;
                 }
@@ -54,8 +85,18 @@ const StyledHome = styled.main`
                     background: #EFEFEF;
                     font-size: 1.2rem;
                     padding: .21em;
-                    max-width: 20%;
-                    color: #7d7d7d;
+                    color: #555555;
+                    width: 100%;
+
+                    &::placeholder{
+                        color: #c7c2c2;
+                    }
+                }
+
+                .input{
+                    display: flex;
+                    gap:1em;
+                    max-width: 50%;
                 }
                 
             }
@@ -84,7 +125,7 @@ export default function Home() {
                     <form onSubmit={startGame} className='game-start_form'>
                         <label htmlFor="bestof">Best Of:</label>
                         <div className='input'>
-                            <input type="number" ref={bestOfRef} name="bestof" id="bestof" />
+                            <input placeholder='3' type="number" ref={bestOfRef} name="bestof" id="bestof" />
                             <StyledButton type="submit">Start</StyledButton>
                         </div>
                     </form>
@@ -96,11 +137,13 @@ export default function Home() {
             <footer>
                 <div className='credit'>
                     <div className='icon'></div>
-                    <a href="">website design by <b>Shubamium</b></a>
+                    <p>
+                         website design by <a href="https://github.com/shubamium"><b>Shubamium</b></a>
+                    </p>
                 </div>
                 <div className="highscore">
                     <h2>Highschore:</h2>
-                    <p>20</p>
+                    <p className='score'>20</p>
                 </div>
             </footer>
         </StyledHome>
