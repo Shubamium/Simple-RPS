@@ -22,11 +22,12 @@ export default function Game() {
 
     const {state} = useLocation();
     const navigate = useNavigate();
-    const {bestof,score} = state;
+    const {bestof,score,round:_round} = state;
 
     const [currentRound,setCurrentRound] = useState([]); // Reset to empty array
     const [visibleCPU,setVisibleCPU] = useState(3);  // Reset to 3
     const [gameScore,setGameScore] = useState(score || {player:0,cpu:0});
+    const [round,setRound] = useState(_round || 0);
    
     // const [matchResults,setMatchResults] = useState(null);
     // const [round,setRound] = useState(0);
@@ -81,6 +82,7 @@ export default function Game() {
             isFinal:isFinalRound(_gameScore.player,_gameScore.cpu),
             isOver:isGameOver(_gameScore.player,_gameScore.cpu),
             gameScore:_gameScore,
+            round:round+1,
             bestof:bestof
         }
         
@@ -111,6 +113,7 @@ export default function Game() {
     
     return (
         <div>
+            <p>Game {round}</p>
             <p>Best Of:{bestof}</p>
             <p>Current Round:"{currentRound.toString()}"</p>
             <h2>Player1</h2>

@@ -14,7 +14,7 @@ export default function Results() {
 
     function handleNextRound(){
         navigate('/game',{
-            state:{bestof:matchResults.bestof,score:matchResults.gameScore}
+            state:{bestof:matchResults.bestof,score:matchResults.gameScore,round:matchResults.round}
         });
     }
 
