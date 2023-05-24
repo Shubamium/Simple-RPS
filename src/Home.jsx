@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 import { StyledButton } from './components/styled/StyledButton';
 
-const StyledHome = styled.main`
+export const StyledLayout = styled.main`
     padding: 2em;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,12 @@ const StyledHome = styled.main`
                 color: black;
             }
         }
+    }
 
+`
+const StyledHome = styled(StyledLayout)`
+  
+    footer{
         .highscore{
             text-align: right;
             h2{
@@ -51,7 +56,6 @@ const StyledHome = styled.main`
             }
         }
     }
-
     .main{
         display: grid;
         width: 60vw;

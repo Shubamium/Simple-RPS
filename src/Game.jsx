@@ -2,9 +2,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Slot from "./components/slot";
 import { useEffect, useState } from "react";
 import { ROUND_STATE, STATE_ROUND } from "./utility";
+import styled from "styled-components";
+import { StyledLayout } from "./Home";
 
 
-
+const StyledGame = styled(StyledLayout)`
+    
+`
 
 function checkWin(p1,cpu){
     if(p1 === cpu) return ROUND_STATE.draw;
@@ -42,7 +46,6 @@ export default function Game() {
             onPlayerPick();
         }
     },[currentRound]);
-
 
     function handleNextRound(){
         resetRound();
@@ -96,7 +99,6 @@ export default function Game() {
     function enemyPick(){
          pick(Math.floor(Math.random()*3),0);
     }
-
     function pick(number,index){
         if(currentRound.length >= 2) return;
         setCurrentRound((prev)=>{
@@ -109,31 +111,28 @@ export default function Game() {
             return arr;
         })
     }
-
     
     return (
-        <div>
-            <p>Game {round}</p>
-            <p>Best Of:{bestof}</p>
-            <p>Current Round:"{currentRound.toString()}"</p>
-            <h2>Player1</h2>
-            <div style={{display:'flex'}}>
-                <Slot data={0} onClick={()=>{pick(0,1)}}/>
-                <Slot data={1} onClick={()=>{pick(1,1)}}/>
-                <Slot data={2} onClick={()=>{pick(2,1)}}/>
-            </div>
-            <p>VS</p>
-            <h2>CPU</h2>
-            <Slot data={visibleCPU}/>
+        <StyledGame>
+            <header>
+                <p>Game {round}</p>
+                <h2><b>Simple</b> Rock Paper Scissors</h2>
+            </header>
+            <div className="main">
+                <h2>Player1</h2>
+                <div style={{display:'flex'}}>
+                    <Slot data={0} onClick={()=>{pick(0,1)}}/>
+                    <Slot data={1} onClick={()=>{pick(1,1)}}/>
+                    <Slot data={2} onClick={()=>{pick(2,1)}}/>
+                </div>
+                <p>VS</p>
+                <h2>CPU</h2>
+                <Slot data={visibleCPU}/>
 
-            {/* {matchResults && 
-            <dialog open >
-                <h2>Round Ended</h2>
-                <p>Results:{STATE_ROUND[matchResults.roundStatus]}</p>
-                <p className="game-score">{matchResults.gameScore.player} - {matchResults.gameScore.cpu}</p>
-                <button onClick={()=>{handleNextRound()}}>Next Round</button>
-                <button>Go Back</button>
-            </dialog> */}
-        </div>
+            </div>
+            <footer>
+                  <p>Best Of:{bestof}</p>
+            </footer>
+        </StyledGame>
     )
 }
