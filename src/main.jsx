@@ -4,7 +4,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './Home.jsx'
 import Game from './Game.jsx';
 import Results from './Results.jsx';
-import globals from './Global.css';
+import styled, { createGlobalStyle } from 'styled-components';
+import './global.css';
 
 const routes = createBrowserRouter(
   [
@@ -23,9 +24,24 @@ const routes = createBrowserRouter(
   ]
 );
 
+
+const StyledGlobals = createGlobalStyle`
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      --fontMain: 'Montserrat',sans-serif;
+  }
+
+
+  body{
+      font-family: var(--fontMain);
+  }
+`
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+   <StyledGlobals></StyledGlobals>
     <RouterProvider router={routes}>
-    </RouterProvider>
+      </RouterProvider>
   </React.StrictMode>,
 )
