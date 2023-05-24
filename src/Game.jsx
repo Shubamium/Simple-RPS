@@ -53,22 +53,37 @@ export default function Game() {
         setCurrentRound([]); // Clear the turn
     }
     function onPlayerPick(){
+        // Show CPU Visually
         setVisibleCPU(currentRound[0]);
-        const win =  checkWin(currentRound[0], currentRound[1]);
+        
+        // Check Winner
+        const roundResult =  checkWin(currentRound[0], currentRound[1]);
+        
+        // Set Score
+        let _gameScore = gameScore;
+        if(roundResult === ROUND_STATE.win){
+            _gameScore.player +=1; 
+        }else if(roundResult === ROUND_STATE.lose){
+            _gameScore.cpu +=1; 
+        }
+        
+        const isFinalRound = (player,cpu)=>{
+            const beforeFinishCount = bestof - 1;
+            return player === beforeFinishCount && cpu === beforeFinishCount;
+        }
+        // Create result object
         const _matchResults = {
-            roundStatus:win,
-            isFinal:false,
-            gameScore:gameScore,
-
+            roundStatus:roundResult,
+            isFinal:isFinalRound(_gameScore.player,_gameScore.cpu),
+            isOver:isGameOver(),
+            gameScore:_gameScore,
+            bestof:bestof
         }
-        const onDelayFinished = ()=>{
-            console.log('Round Ended');
-            setMatchResults(_matchResults);
-        }
+        
+      
         // Add a delay
         setTimeout(()=>{
-            onDelayFinished();
-            navigate('/results',{matchResults:_matchResults});
+            navigate('/results',{state:{matchResults:_matchResults}});
         },1000);
     }
 
