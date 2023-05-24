@@ -8,6 +8,26 @@ import { StyledLayout } from "./Home";
 
 const StyledGame = styled(StyledLayout)`
     
+
+    .main{
+
+        .player-pick{
+            display: flex;
+        }
+        .cpu-pick{
+            display: flex;
+            justify-content: center;
+        }
+
+        .versus{
+            font-size: 5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        .heading{
+            text-align: center;
+        }
+    }
 `
 
 function checkWin(p1,cpu){
@@ -23,6 +43,8 @@ function checkWin(p1,cpu){
     return ROUND_STATE.lose;
 }
 export default function Game() {
+
+    const delay = 1500;
 
     const {state} = useLocation();
     const navigate = useNavigate();
@@ -93,7 +115,7 @@ export default function Game() {
         // Add a delay
         setTimeout(()=>{
             navigate('/results',{state:{matchResults:_matchResults}});
-        },1000);
+        },delay);
     }
 
     function enemyPick(){
@@ -119,16 +141,20 @@ export default function Game() {
                 <h2><b>Simple</b> Rock Paper Scissors</h2>
             </header>
             <div className="main">
-                <h2>Player1</h2>
-                <div style={{display:'flex'}}>
-                    <Slot data={0} onClick={()=>{pick(0,1)}}/>
-                    <Slot data={1} onClick={()=>{pick(1,1)}}/>
-                    <Slot data={2} onClick={()=>{pick(2,1)}}/>
+                <div className="player">
+                    <p className="heading">Pick your turn:</p>
+                    <div className="player-pick">
+                        <Slot data={0} onClick={()=>{pick(0,1)}}/>
+                        <Slot data={1} onClick={()=>{pick(1,1)}}/>
+                        <Slot data={2} onClick={()=>{pick(2,1)}}/>
+                    </div>
                 </div>
-                <p>VS</p>
-                <h2>CPU</h2>
-                <Slot data={visibleCPU}/>
-
+                <p className="versus">VS</p>
+                <div className="cpu">
+                    <div className="cpu-pick">
+                        <Slot data={visibleCPU}/>
+                    </div>
+                </div>
             </div>
             <footer>
                   <p>Best Of:{bestof}</p>
