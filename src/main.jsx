@@ -5,7 +5,7 @@ import Home from './Home.jsx'
 import Game from './Game.jsx';
 import Results from './Results.jsx';
 import styled, { createGlobalStyle } from 'styled-components';
-import './global.css';
+import './Global.css';
 
 const routes = createBrowserRouter(
   [
