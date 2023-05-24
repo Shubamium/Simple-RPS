@@ -17,6 +17,10 @@ export default function Results() {
             state:{bestof:matchResults.bestof,score:matchResults.gameScore}
         });
     }
+
+    function handleBack(){
+        navigate('/');
+    }
     return (
         <div>
             <h2>{matchResults.isFinal ?
@@ -24,8 +28,10 @@ export default function Results() {
             }</h2>
             <p>Results:{STATE_ROUND[matchResults.roundStatus]}</p>
             <p className="game-score">{matchResults.gameScore.player} - {matchResults.gameScore.cpu}</p>
-            <button onClick={()=>{handleNextRound()}}>Next Round</button>
-            <button>Go Back</button>
+            {!matchResults.isOver && 
+                <button onClick={()=>{handleNextRound()}}>Next Round</button>
+            }
+            <button onClick={handleBack}>Go Back</button>
         </div>
     )
 }

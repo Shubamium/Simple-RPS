@@ -71,11 +71,15 @@ export default function Game() {
             const beforeFinishCount = bestof - 1;
             return player === beforeFinishCount && cpu === beforeFinishCount;
         }
+
+        const isGameOver = (player,cpu)=>{
+            return player >= bestof || cpu >= bestof;
+        }
         // Create result object
         const _matchResults = {
             roundStatus:roundResult,
             isFinal:isFinalRound(_gameScore.player,_gameScore.cpu),
-            isOver:isGameOver(),
+            isOver:isGameOver(_gameScore.player,_gameScore.cpu),
             gameScore:_gameScore,
             bestof:bestof
         }
