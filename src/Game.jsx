@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Slot from "./components/slot";
 import { useEffect, useState } from "react";
 import { ROUND_STATE, STATE_ROUND } from "./utility";
@@ -21,14 +21,15 @@ function checkWin(p1,cpu){
 export default function Game() {
 
     const {state} = useLocation();
-    const {bestof} = state;
+    const navigate = useNavigate();
+    const {bestof,score} = state;
 
     const [currentRound,setCurrentRound] = useState([]); // Reset to empty array
     const [visibleCPU,setVisibleCPU] = useState(3);  // Reset to 3
-    const [gameScore,setGameScore] = useState({player:0,cpu:0});
+    const [gameScore,setGameScore] = useState(score || {player:0,cpu:0});
    
-    const [matchResults,setMatchResults] = useState(null);
-    const [round,setRound] = useState(0);
+    // const [matchResults,setMatchResults] = useState(null);
+    // const [round,setRound] = useState(0);
     // Pick for enemy
     useEffect(()=>{
         enemyPick();
@@ -67,6 +68,7 @@ export default function Game() {
         // Add a delay
         setTimeout(()=>{
             onDelayFinished();
+            navigate('/results',{matchResults:_matchResults});
         },1000);
     }
 
@@ -99,20 +101,17 @@ export default function Game() {
                 <Slot data={2} onClick={()=>{pick(2,1)}}/>
             </div>
             <p>VS</p>
-            <h2>Enemy</h2>
+            <h2>CPU</h2>
             <Slot data={visibleCPU}/>
-            <p>status</p>
 
-
-            {matchResults && 
+            {/* {matchResults && 
             <dialog open >
                 <h2>Round Ended</h2>
                 <p>Results:{STATE_ROUND[matchResults.roundStatus]}</p>
                 <p className="game-score">{matchResults.gameScore.player} - {matchResults.gameScore.cpu}</p>
                 <button onClick={()=>{handleNextRound()}}>Next Round</button>
                 <button>Go Back</button>
-            </dialog>
-            }
+            </dialog> */}
         </div>
     )
 }

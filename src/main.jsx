@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './Home.jsx'
 import Game from './Game.jsx';
+import Results from './Results.jsx';
 
 
 const routes = createBrowserRouter(
@@ -14,6 +15,10 @@ const routes = createBrowserRouter(
     {
       path:'/game',
       element:<Game/>
+    },
+    {
+      path:'/results',
+      element:<Results/>
     }
   ]
 );
