@@ -130,7 +130,7 @@ export default function Home() {
                     <form onSubmit={startGame} className='game-start_form'>
                         <label htmlFor="bestof">Best Of:</label>
                         <div className='input'>
-                            <motion.input  initial={{opacity:0,x:-200}} animate={{opacity:1,x:0}} transition={{delay:.35}}   placeholder='3' type="number" ref={bestOfRef} name="bestof" id="bestof" />
+                            <motion.input  initial={{opacity:0,x:-200}} animate={{opacity:1,x:0}} transition={{delay:.35}}   placeholder='3' type="number" min="0" max={100} ref={bestOfRef} name="bestof" id="bestof" />
                             <StyledButton whileHover={{scale:1.2}} initial={{opacity:0,x:-200}} animate={{opacity:1,x:0}} transition={{delay:.45}}  type="submit">Start</StyledButton>
                         </div>
                     </form>
@@ -143,7 +143,7 @@ export default function Home() {
                 <div className='credit'>
                     <div className='icon'></div>
                     <p>
-                         website design by <a href="https://github.com/shubamium"><b>Shubamium</b></a>
+                        website design by <a href="https://github.com/shubamium"><b>Shubamium</b></a>
                     </p>
                 </div>
                 <div className="highscore">

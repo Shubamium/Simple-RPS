@@ -79,6 +79,6 @@ function App(){
 function Layout(){
   const location = useLocation();
   return (
-      <Outlet/>
+    <Outlet/>
   )
 }

@@ -149,6 +149,12 @@ export default function Game() {
             return arr;
         })
     }
+
+    function handleBack(){
+        if(currentRound.length <2){
+            navigate('/');
+        }
+    }
     
     return (
         <StyledGame initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
@@ -179,7 +185,7 @@ export default function Game() {
                         {bestof}
                     </h2>
                 </div>
-                <StyledButton onClick={()=>{navigate('/')}}>Go Back</StyledButton>
+                <StyledButton onClick={handleBack}>Go Back</StyledButton>
             </footer>
         </StyledGame>
     )
