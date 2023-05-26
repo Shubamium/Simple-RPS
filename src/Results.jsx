@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { STATE_ROUND } from './utility';
+import { STATE_ROUND, bgColor } from './utility';
 import styled from 'styled-components';
 import { StyledLayout } from './Home';
 import { StyledButton } from './components/styled/StyledButton';
@@ -58,6 +58,27 @@ const StyledResults = styled(StyledLayout)`
                 background:#B6FEA4;
                 padding:0em .9em;
                 color:#444343;
+            }
+        }
+    }
+
+
+    footer{
+        .abstract{
+            display: flex;
+            gap: 2em;
+            div{
+                width:50px;
+                height:50px;
+            }
+            .box:nth-child(1){
+                background-color: ${props => bgColor[0]};
+            }
+            .box:nth-child(2){
+                background-color: ${props => bgColor[1]};
+            }
+            .box:nth-child(3){
+                background-color: ${props => bgColor[2]};
             }
         }
     }
@@ -129,15 +150,14 @@ export default function Results() {
             </div>
 
             <footer>
-                <div className='credit'>
-                    <div className='icon'></div>
-                    <p>
-                         website design by <a href="https://github.com/shubamium"><b>Shubamium</b></a>
-                    </p>
-                </div>
                 <div className="highscore">
                     <h2>Highschore:</h2>
                     <p className='score'>{highscore}</p>
+                </div>
+                <div className='abstract'>
+                  <motion.div  whileHover={{rotate:135,animationDelay:0}} initial={{opacity:0,rotate:-90}} animate={{opacity:1,rotate:0}} transition={{delay:0.2}} className='box 1'></motion.div>
+                  <motion.div whileHover={{rotate:135,animationDelay:0}} initial={{opacity:0,rotate:-90}} animate={{opacity:1,rotate:0}} transition={{delay:0.3}} className='box 2'></motion.div>
+                  <motion.div whileHover={{rotate:135,animationDelay:0}} initial={{opacity:0,rotate:-90}} animate={{opacity:1,rotate:0}} transition={{delay:0.4}} className='box 3'></motion.div>
                 </div>
             </footer>
         </StyledResults>
