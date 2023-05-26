@@ -2,8 +2,9 @@ import React, { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 import { StyledButton } from './components/styled/StyledButton';
+import { motion } from 'framer-motion';
 
-export const StyledLayout = styled.main`
+export const StyledLayout = styled(motion.main)`
     padding: 2em;
     display: flex;
     flex-direction: column;
@@ -38,7 +39,6 @@ export const StyledLayout = styled.main`
 
 `
 const StyledHome = styled(StyledLayout)`
-  
     footer{
         .highscore{
             text-align: right;
@@ -107,6 +107,7 @@ const StyledHome = styled(StyledLayout)`
         }
     }
 `
+
 export default function Home() {
     const navigate = useNavigate();
     const bestOfRef = useRef();
@@ -118,19 +119,19 @@ export default function Home() {
         navigate('/game',{state:data});
     }
     return (
-        <StyledHome>
-            <header>
+        <StyledHome initial={{opacity:0,x:50}} animate={{opacity:1,x:0}} exit={{opacity:0}} >
+            <motion.header initial={{opacity:0,y:-200}} animate={{opacity:1,y:0}} transition={{delay:.25}}>
                 <div></div>
                 <h2><b>Simple</b> Rock Paper Scissors</h2>
-            </header>
+            </motion.header>
             <div className="main">
                 <div className="action">
-                    <h1 className='main-title'>Simple <br/> RPS</h1>
+                    <motion.h1 initial={{opacity:0,x:-200}} animate={{opacity:1,x:0}} transition={{delay:.30}} className='main-title'>Simple <br/> RPS</motion.h1>
                     <form onSubmit={startGame} className='game-start_form'>
                         <label htmlFor="bestof">Best Of:</label>
                         <div className='input'>
-                            <input placeholder='3' type="number" ref={bestOfRef} name="bestof" id="bestof" />
-                            <StyledButton type="submit">Start</StyledButton>
+                            <motion.input  initial={{opacity:0,x:-200}} animate={{opacity:1,x:0}} transition={{delay:.35}}   placeholder='3' type="number" ref={bestOfRef} name="bestof" id="bestof" />
+                            <StyledButton whileHover={{scale:1.2}} initial={{opacity:0,x:-200}} animate={{opacity:1,x:0}} transition={{delay:.45}}  type="submit">Start</StyledButton>
                         </div>
                     </form>
                 </div>

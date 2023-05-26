@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { bgColor } from "../../utility";
+import { motion } from "framer-motion";
 
-export const StyledButton = styled.button`
+export const StyledButton = styled(motion.button)`
     background: ${props => (props.bgColor && bgColor[props.bgColor]) || bgColor[0]};
     padding: .2em 1em;
     font-weight: bold;
@@ -11,6 +12,9 @@ export const StyledButton = styled.button`
     cursor: pointer;
     &:hover{
         scale: 1.02;
+    }
+    &:active{
+        scale:0.92;
     }
 
 `

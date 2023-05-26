@@ -1,29 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Outlet, RouterProvider, Routes, createBrowserRouter, createRoutesFromChildren, useLocation, useOutlet } from 'react-router-dom'
 import Home from './Home.jsx'
 import Game from './Game.jsx';
 import Results from './Results.jsx';
 import styled, { createGlobalStyle } from 'styled-components';
 import './Global.css';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const routes = createBrowserRouter(
   [
     {
-      path:'/',
-      element:<Home/>
-    },
-    {
-      path:'/game',
-      element:<Game/>
-    },
-    {
-      path:'/results',
-      element:<Results/>
+      element:<Layout/>,
+      children:[
+        {
+          path:'/',
+          element:<Home/>
+        },
+        {
+          path:'/game',
+          element:<Game/>
+        },
+        {
+          path:'/results',
+          element:<Results/>
+        }
+      ]
     }
   ]
 );
 
+
+const AnimatedOutlet = () => {
+  const o = useOutlet();
+  const [outlet] = useState(o);
+
+  return <>{outlet}</>;
+};
+
+
+// const routes = createBrowserRouter(
+//   createRoutesFromChildren(
+//     <Route element={'layout'}>
+//       <Route></Route>
+//     </Route>
+//   )
+// )
 
 const StyledGlobals = createGlobalStyle`
   *{
@@ -40,8 +62,23 @@ const StyledGlobals = createGlobalStyle`
 `
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-   <StyledGlobals></StyledGlobals>
-    <RouterProvider router={routes}>
-      </RouterProvider>
+    <App/>
   </React.StrictMode>,
 )
+
+function App(){
+
+  return (
+   <>
+    <StyledGlobals></StyledGlobals>
+    <RouterProvider router={routes}>
+    </RouterProvider>
+   </>
+  )
+}
+function Layout(){
+  const location = useLocation();
+  return (
+      <Outlet/>
+  )
+}
