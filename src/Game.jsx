@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { StyledLayout } from "./Home";
 import { StyledButton } from "./components/styled/StyledButton";
 import { AnimatePresence } from "framer-motion";
+import useHighscore from "./components/hooks/useHighscore";
 
 
 const StyledGame = styled(StyledLayout)`
@@ -71,6 +72,7 @@ export default function Game() {
     const [gameScore,setGameScore] = useState(score || {player:0,cpu:0});
     const [round,setRound] = useState(_round || 0);
    
+    const {setHighscore} = useHighscore();
     // const [matchResults,setMatchResults] = useState(null);
     // const [round,setRound] = useState(0);
     // Pick for enemy
@@ -126,7 +128,9 @@ export default function Game() {
             round:round+1,
             bestof:bestof
         }
-        
+        if(_matchResults.isOver && _matchResults.roundStatus === ROUND_STATE.win){
+            setHighscore(_gameScore.player);
+        }
       
         // Add a delay
         setTimeout(()=>{

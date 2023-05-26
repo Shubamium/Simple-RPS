@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { StyledLayout } from './Home';
 import { StyledButton } from './components/styled/StyledButton';
 import { motion } from 'framer-motion'
+import useHighscore from './components/hooks/useHighscore';
 
 const StyledResults = styled(StyledLayout)`
     
@@ -91,8 +92,8 @@ export default function Results() {
     function handleBack(){
         navigate('/');
     }
+    const {highscore} = useHighscore();
 
-    
     return (
         <StyledResults initial={{opacity:0,x:-100}} animate={{opacity:1,x:0}}>
             <motion.header initial={{opacity:0,y:-100}} animate={{opacity:1,y:0}} transition={{delay:0.2,ease:'linear'}}>
@@ -123,7 +124,7 @@ export default function Results() {
                </div>
                 <div className="right">
                     <p className='result-text'>Results: <span>{STATE_ROUND[matchResults.roundStatus]}</span></p>
-                    <motion.p initial={{opacity:0,x:-100}} animate={{opacity:1,x:0}} className="score"> {matchResults.gameScore.player} - {matchResults.gameScore.cpu}</motion.p>
+                    <motion.p  initial={{opacity:0,x:-100}} animate={{opacity:1,x:0}} className="score"> {matchResults.gameScore.player} - {matchResults.gameScore.cpu}</motion.p>
                 </div>
             </div>
 
@@ -136,7 +137,7 @@ export default function Results() {
                 </div>
                 <div className="highscore">
                     <h2>Highschore:</h2>
-                    <p className='score'>20</p>
+                    <p className='score'>{highscore}</p>
                 </div>
             </footer>
         </StyledResults>

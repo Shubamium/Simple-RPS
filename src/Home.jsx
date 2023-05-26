@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 import { StyledButton } from './components/styled/StyledButton';
 import { motion } from 'framer-motion';
+import useHighscore from './components/hooks/useHighscore';
 
 export const StyledLayout = styled(motion.main)`
     padding: 2em;
@@ -118,6 +119,8 @@ export default function Home() {
         }
         navigate('/game',{state:data});
     }
+
+    const {highscore} = useHighscore();
     return (
         <StyledHome initial={{opacity:0,x:50}} animate={{opacity:1,x:0}} exit={{opacity:0}} >
             <motion.header initial={{opacity:0,y:-200}} animate={{opacity:1,y:0}} transition={{delay:.25}}>
@@ -148,7 +151,7 @@ export default function Home() {
                 </div>
                 <div className="highscore">
                     <h2>Highschore:</h2>
-                    <p className='score'>20</p>
+                    <p className='score'>{highscore}</p>
                 </div>
             </footer>
         </StyledHome>
