@@ -5,6 +5,7 @@ import paper from '../assets/RPS_paper.png';
 import scissors from '../assets/RPS_scissors.png';
 import hidden from '../assets/RPS_hidden.png';
 import { bgColor } from '../utility';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const RPS_STATE = {
     rock:0,
@@ -21,7 +22,7 @@ const RPS = [
 ]
 
 
-const StyledSlot = styled.div`
+const StyledSlot = styled(motion.div)`
 
     background: ${props => bgColor[props.data]};
     ${props => props.data === RPS_STATE.hidden && css`
@@ -42,11 +43,13 @@ const StyledSlot = styled.div`
         scale: 1.02;
     }
 `
-export default function Slot({data,onClick}) {
+export default function Slot({data,onClick,delay}) {
     if(data === null || data === undefined)return<></>;
     return (
-        <StyledSlot data={data} onClick={()=>{onClick && onClick()}}>
-            <img src={RPS[data]} alt="" className='icon' />
+        <StyledSlot data={data} onClick={()=>{onClick && onClick()}} initial={{opacity:0,rotate:-90}} animate={{opacity:1,rotate:0}} transition={{delay:delay}}>
+           <AnimatePresence mode='wait'>
+              <motion.img key={RPS[data]} initial={{opacity:0}} animate={{opacity:1}} exit={{scale:0.9,x:-10,opacity:0}} src={RPS[data]} alt="" className='icon' />
+           </AnimatePresence>
         </StyledSlot>
     )
 }

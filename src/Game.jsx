@@ -5,6 +5,7 @@ import { ROUND_STATE, STATE_ROUND } from "./utility";
 import styled from "styled-components";
 import { StyledLayout } from "./Home";
 import { StyledButton } from "./components/styled/StyledButton";
+import { AnimatePresence } from "framer-motion";
 
 
 const StyledGame = styled(StyledLayout)`
@@ -59,7 +60,7 @@ function checkWin(p1,cpu){
 }
 export default function Game() {
 
-    const delay = 1500;
+    const delay = 2000;
 
     const {state} = useLocation();
     const navigate = useNavigate();
@@ -150,7 +151,7 @@ export default function Game() {
     }
     
     return (
-        <StyledGame>
+        <StyledGame initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
             <header>
                 <h2 className="roundcount">Game {round}</h2>
                 <h2><b>Simple</b> Rock Paper Scissors</h2>
@@ -159,9 +160,9 @@ export default function Game() {
                 <div className="player">
                     <p className="heading">Pick your turn:</p>
                     <div className="player-pick">
-                        <Slot data={0} onClick={()=>{pick(0,1)}}/>
-                        <Slot data={1} onClick={()=>{pick(1,1)}}/>
-                        <Slot data={2} onClick={()=>{pick(2,1)}}/>
+                        <Slot data={0} onClick={()=>{pick(0,1)}} delay={0.1}/>
+                        <Slot data={1} onClick={()=>{pick(1,1)}} delay={0.15}/>
+                        <Slot data={2} onClick={()=>{pick(2,1)}} delay={0.2}/>
                     </div>
                 </div>
                 <p className="versus">VS</p>
@@ -172,13 +173,13 @@ export default function Game() {
                 </div>
             </div>
             <footer>
-                  <div className="div">
+                <div className="div">
                     <p>Best Of:</p>
                     <h2>
                         {bestof}
                     </h2>
-                  </div>
-                  <StyledButton onClick={()=>{navigate('/')}}>Go Back</StyledButton>
+                </div>
+                <StyledButton onClick={()=>{navigate('/')}}>Go Back</StyledButton>
             </footer>
         </StyledGame>
     )
