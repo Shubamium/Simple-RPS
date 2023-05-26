@@ -46,7 +46,7 @@ const StyledSlot = styled(motion.div)`
 export default function Slot({data,onClick,delay}) {
     if(data === null || data === undefined)return<></>;
     return (
-        <StyledSlot data={data} onClick={()=>{onClick && onClick()}} initial={{opacity:0,rotate:-90}} animate={{opacity:1,rotate:0}} transition={{delay:delay}}>
+        <StyledSlot data={data} whileTap={{rotate:135,animationDelay:0}} onClick={()=>{onClick && onClick()}} initial={{opacity:0,rotate:-90}} animate={{opacity:1,rotate:0}} transition={{delay:delay}}>
            <AnimatePresence mode='wait'>
               <motion.img key={RPS[data]} initial={{opacity:0}} animate={{opacity:1}} exit={{scale:0.9,x:-10,opacity:0}} src={RPS[data]} alt="" className='icon' />
            </AnimatePresence>

@@ -35,7 +35,7 @@ const AnimatedOutlet = () => {
   const o = useOutlet();
   const [outlet] = useState(o);
 
-  return <>{outlet}</>;
+  return <>{outlet || <p>Loading . . .</p>}</>;
 };
 
 
@@ -58,6 +58,7 @@ const StyledGlobals = createGlobalStyle`
 
   body{
       font-family: var(--fontMain);
+      overflow: hidden;
   }
 `
 ReactDOM.createRoot(document.getElementById('root')).render(

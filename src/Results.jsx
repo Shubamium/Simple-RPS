@@ -4,7 +4,7 @@ import { STATE_ROUND } from './utility';
 import styled from 'styled-components';
 import { StyledLayout } from './Home';
 import { StyledButton } from './components/styled/StyledButton';
-
+import { motion } from 'framer-motion'
 
 const StyledResults = styled(StyledLayout)`
     
@@ -61,6 +61,17 @@ const StyledResults = styled(StyledLayout)`
         }
     }
 `
+
+const scoreAnimation = {
+    initial:{
+        scale:0,
+        rotate:-20
+    },
+    animate:{
+        scale:1,
+        rotate:0
+    }
+}
 export default function Results() {
     const navigate = useNavigate();
     const {state} = useLocation();
@@ -80,13 +91,14 @@ export default function Results() {
     function handleBack(){
         navigate('/');
     }
-    return (
-        <StyledResults>
 
-            <header>
+    
+    return (
+        <StyledResults initial={{opacity:0,x:-100}} animate={{opacity:1,x:0}}>
+            <motion.header initial={{opacity:0,y:-100}} animate={{opacity:1,y:0}} transition={{delay:0.2,ease:'linear'}}>
                 <h2 className="roundcount">Game {matchResults.round}</h2>
                 <h2><b>Simple</b> Rock Paper Scissors</h2>
-            </header>
+            </motion.header>
             <div className="main">
                <div className="left">
                     {!matchResults.isOver ?
@@ -111,7 +123,7 @@ export default function Results() {
                </div>
                 <div className="right">
                     <p className='result-text'>Results: <span>{STATE_ROUND[matchResults.roundStatus]}</span></p>
-                    <p className="score">{matchResults.gameScore.player} - {matchResults.gameScore.cpu}</p>
+                    <motion.p initial={{opacity:0,x:-100}} animate={{opacity:1,x:0}} className="score"> {matchResults.gameScore.player} - {matchResults.gameScore.cpu}</motion.p>
                 </div>
             </div>
 
