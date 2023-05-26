@@ -6,8 +6,8 @@ I will be doing more and more modern style websites from now on to diverse my po
 
 ## Component Used:
 - React.js
-- Styled Components
-
+- Styled Components (Styling)
+- Framer Motion (Animation)
 
 ## Assets Used:
 - Rock Paper Scissors Icons from (goodday451999)[https://goodday451999.github.io/Rock-Paper-Scissors-Neo/] 's Github
