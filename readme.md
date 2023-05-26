@@ -10,4 +10,4 @@ I will be doing more and more modern style websites from now on to diverse my po
 - Framer Motion (Animation)
 
 ## Assets Used:
-- Rock Paper Scissors Icons from (goodday451999)[https://goodday451999.github.io/Rock-Paper-Scissors-Neo/] 's Github
+- Rock Paper Scissors Icons from [goodday451999](https://goodday451999.github.io/Rock-Paper-Scissors-Neo/)'s Github
